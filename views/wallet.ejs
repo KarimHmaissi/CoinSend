@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-xs-6 col-xs-offset-3">
+    <h1>Wallets page</h1>
+
+    <p><%= user.username%></p>
+
+    <h2>Wallets</h2>
+    <% user.wallets.forEach(function(wallet)  { %>
+        <p><%= wallet.publicKey %></p>
+    <% }); %>
+
+    <div class="add-wallet">
+    	<div class="add-wallet__show-form">
+    		<p>Add a new wallet address</p>
+    		<div>
+    			<button href="#" class="button add-wallet__show-form-button">Add wallet</button>
+    		</div>
+    	</div>
+
+    	<form class="add-wallet__form" method="post" action="/wallet/create">
+	    	<h2>Add a wallet</h2>
+    	    <div class="form-group">
+    	      <label for="publicKey">Publid Wallet Address </label>
+    	      <p>Add another address</p>
+    	      <input type="walet" name="publicKey" placeholder="eg .0x79dbfc3719a4209302d4fe0edc8cf0d74193caea">
+    	    </div>
+    	    <input type="hidden" name="owner" value=<%= user.id%>>
+    	    <button type="submit" class="button">Add wallet</button>
+    	</form>
+    </div>
+  </div>
+</div>
