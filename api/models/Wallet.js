@@ -17,6 +17,11 @@ module.exports = {
 
 		owner: {
 			model: 'user'
+		},
+
+		cointype: {
+			type: 'text',
+			required: true
 		}
 	}
 };

@@ -1,0 +1,223 @@
+/*
+body {
+	background: #1a1a1a;
+	color: #ffffff;
+	margin-bottom: 12rem;
+}
+
+a {
+	color: #1ce091;
+}
+
+p {
+	font-weight: 300;
+}
+
+form {
+	
+}
+
+.border {
+	margin-bottom: 4rem;
+	padding: 6rem;
+	padding-top: 0;
+	border: 1.3px solid rgba(255, 255, 255, 0.34);
+	border-radius: 3.5px;
+}
+
+form h2 {
+	margin-bottom: 3rem;
+	margin-top: 3rem;
+	font-weight: 300;
+	text-align: center;
+}
+
+input {
+	min-height: 29px;
+    min-width: 100%;
+    border: 1px solid rgba(51, 51, 51, 0.23);
+    padding: 5px;
+    padding-left: 10px;
+    color: black;
+}
+
+.form-group {
+	margin-bottom: 3.5rem;
+}
+
+.container {
+	margin-top: 6rem;
+}
+
+.green {
+	color: #1ce091;
+}
+
+.button {
+	padding: 18px 15px;
+	background: #1ce091;
+	border: 0;
+	letter-spacing: 0.6px;
+	cursor: pointer;
+	border-radius: 5px;
+	color: white;
+	font-weight: 700;
+}
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #1ce091;
+    border: 0;
+}
+
+
+.hero {
+	margin-bottom: 6rem;
+}
+
+.hero h1 {
+	font-size: 72px;
+	text-align: center;
+	font-weight: 100;
+	margin-bottom: 4rem;
+	color: #1ce091;
+}
+
+.hero p {
+	font-weight: 300;
+	text-align: center;
+}
+
+.hero .block a {
+	display: block;
+	width: 100%;
+}
+
+
+
+
+nav {
+	width: 100%;
+	background: #1ce091;
+}
+
+nav .container {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+.nav-list {
+	float: left;
+	display: inline;
+	padding: 0;
+	margin: 0;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.nav-brand {
+	float: left;
+	width: 85%;
+}
+
+.nav-brand h3 {
+	margin: 0;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.nav-brand h3 a {
+	color: #ffffff;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: 900;
+}
+
+.nav-list li {
+	padding-left: 0;
+	list-style: none;
+	display: inline;
+	margin-right: 30px;
+	cursor: pointer;
+}
+
+.nav-list li a {
+	color: white;
+}
+
+
+
+
+
+.arrow-hero {
+	padding: 6rem 0;
+	position: relative;
+}
+
+.arrow-hero__element {
+	float: left;
+	width: 50%;
+	padding: 0 80px;
+}
+
+.arrow-hero__left {
+	padding-left: 0;
+	text-align: left;
+	white-space: nowrap;
+}
+
+.arrow-hero__right {
+	padding-top: 20px;
+	font-size: 22px;
+}
+
+.arrow-hero__arrow {
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	left: 51%;
+}
+
+.arrow-hero__arrow svg {
+	width: 60px;
+	height: 60px;
+	margin-top: 6px;
+}
+
+
+.wallet-header {
+	text-align: center;
+	position: relative;
+}
+
+.wallets {
+	margin-top: 60px;
+}
+
+.wallet {
+	min-height: 400px;
+	background: #1f1f1f;
+	padding: 80px 0;
+	margin-top: 0;
+}
+
+.wallet:first-child {
+	margin-top: 60px;
+}
+
+.activate-edit-mode {
+	position: absolute;
+	right: 0;
+}
+
+.wallet__publicKey {
+
+}
+
+.wallet__controls {
+
+}
+*/

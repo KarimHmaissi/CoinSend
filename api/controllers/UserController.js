@@ -8,7 +8,6 @@
 module.exports = {
 	index: function (req, res) {
 		console.log('/userController index');
-		console.log('url: ', req.url);
 
 		var username = req.param('username');
 		if(!username) { res.redirect('/'); }
@@ -37,25 +36,96 @@ module.exports = {
 
 	create: function (req, res) {
 		console.log('/userController create');
-		
-
+		console.log(req.body);
 		User.create(req.body).exec(function(err, user) {
 			if(err || !user.id) {
 				console.log(err);
 				return res.redirect('/');
 			}
 
-			Wallet.create({publicKey: req.body.publicKey, owner: user.id}).exec(function (err, wallet) {
-				if(err) { 
-					console.log(err);
-					return res.redirect('/');
-				 }
+			req.session.authenticated = true;
+			req.session.user = user;
 
-				return res.redirect('/' + user.username);
+			return res.redirect('/' + user.username);
 
-			});
+			// Wallet.create({publicKey: req.body.publicKey, owner: user.id, cointype: req.body.cointype}).exec(function (err, wallet) {
+			// 	if(err) { 
+			// 		console.log(err);
+			// 		return res.redirect('/');
+			// 	 }
+
+			// 	req.session.username = user.username;
+
+			// 	return res.redirect('/' + user.username);
+
+			// });
 
 		});
+	},
+
+	edit: function (req, res) {
+		console.log('/userController edit');
+		var username = req.param('username');
+		if(!username) { 
+
+			//flash message
+			res.redirect('/'); 
+		}
+
+		User.findOneByUsername(username).populate('wallets').exec(function (err, user) {
+			if(err || user.length < 1) {
+				//flash error
+				return res.redirect('/');
+			}
+
+			return res.view('editWallet', {'user': user});
+		});
+	},
+
+	signin: function (req, res) {
+		console.log('/userController signIn');
+
+		return res.view('signin');
+	},
+
+	signout: function (req, res) {
+		console.log('/userController singOut');
+		req.session.destroy();
+
+		return res.redirect('/');
+	},
+
+	signInPost: function (req, res) {
+		console.log('/userController signInPost');
+
+		User.findOneByUsername(req.body.username).exec(function (err, user) {
+			if(err || !user) {
+				//Flash error
+				console.log('Cant find user');
+				return res.redirect('/signin');
+			} else if(!req.body.password) {
+				//Flash error
+				console.log('Wrong password');
+				return res.redirect('/' + 'signin');
+			}
+
+			console.log('About to login');
+			console.log(req.body.password);
+			console.log(user.password);
+			console.log(user);
+
+			if(req.body.password === user.password) {
+				console.log('Successfully logged in');
+				req.session.authenticated = true;
+				req.session.user = user;
+
+				return res.redirect('/' + user.username + '/edit');
+			} else {
+				//Flash error
+				console.log('Wrong password');
+				return res.redirect('/' + user.username);
+			}
+		})
 	}
 };
 

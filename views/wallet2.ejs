@@ -1,0 +1,37 @@
+<div class="container">
+	<div class="row">
+	  <div class="wallet-header">
+
+
+	  	<a href="/<%= user.username%>/edit" class="btn btn-primary activate-edit-mode" data-username=<%= user.username%>>Edit mode fam</a>
+	  	
+	    <h1><%= user.username%></h1>
+
+	    <p>CoinSend.com/<%= user.username%></p>
+
+	  </div>
+	</div>
+</div>
+
+<div class="wallets">
+	<% user.wallets.forEach(function(wallet)  { %>
+	    <div class="wallet">
+	    	<div class="container">
+	    		<div class="row">
+	    			<div class="col-xs-12 col-md-8 col-md-offset-1">
+		    			<h2 class="wallet__publicKey"><%= wallet.publicKey %></h2>
+		    			<p class="wallet__cointype"><%= wallet.cointype %></p>
+		    			<% if (wallet.cointype === "etherium") { %>
+		    			<div class="btn-group" role="group">
+		    			  <a href="#" class="btn btn-primary">Copy address to clipboard</a>
+		    			  <a href="http://etherscan.io/address/<%= wallet.publicKey %>" class="btn btn-primary">View on etherscan.io</a>
+		    			  <a href="#" class="btn btn-primary">View QR Code</a>
+		    			</div>
+		    			
+		    			<% } %>
+	    			</div>
+	    		</div>
+	    	</div>
+	   	</div>
+	<% }); %>
+</div>

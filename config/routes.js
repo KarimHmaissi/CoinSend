@@ -37,10 +37,14 @@ module.exports.routes = {
   },
 
   '/:username': 'UserController.index',
+  '/:username/edit': 'UserController.edit',
+  '/user/signin': 'UserController.signin',
+  '/user/signout': 'UserController.signout',
 
   // 'get /*': 'UserController.index',
 
-  'post /user/create': 'UserController.create'
+  'post /user/create': 'UserController.create',
+  'post /user/signInPost': 'UserController.signInPost'
 
 
   /***************************************************************************

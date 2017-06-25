@@ -1,0 +1,204 @@
+<!-- <div class="row">
+  <div class="col-xs-6 col-xs-offset-3">
+
+    <a href="/<%= user.username%>" class="btn btn-primary btn-alert activate-edit-mode" data-username=<%= user.username%>>Finished editing fam</a>
+
+    <h1><%= user.username%></h1>
+
+    <p>CoinSend.com/<%= user.username%></p>
+
+    <h2>Wallets</h2>
+    <% user.wallets.forEach(function(wallet)  { %>
+        <div class="wallet">
+        	<p class="wallet__publicKey"><%= wallet.publicKey %></p>
+        	
+        	<div class="wallet__controls edit-mode" data-publicKey="<%= wallet.id %>">
+	        	<div class="wallet__modify--form-container border">
+	        		<form class="wallet__modify--form " method="POST" action="/wallet/update">
+				    	<h2>Modify Wallet</h2>
+			    	    <div class="form-group">
+			    	      <label for="publicKey">Publid Wallet Address </label>
+			    	      <div>
+			    	          <input type="radio" id="etherium" name="cointype" value="etherium" selected>
+			    	          <label for="male">etherium</label>
+
+			    	          <input type="radio" id="Bitcoin" name="cointype" value="Bitcoin">
+			    	          <label for="female">Bitcoin</label>
+
+			    	          <input type="radio" id="Litecoin" name="cointype" value="Litecoin">
+			    	          <label for="other">Litecoin</label>
+			    	      </div>
+			    	      <input type="walet" name="publicKey" value="<%= wallet.publicKey %>">
+			    	    </div>
+			    	    <input type="hidden" name="owner" value=<%= user.id%>>
+			    	    <button type="submit" class="btn btn-primary">Update Wallet</button>
+	        		</form>
+	        		<form action="/wallet/delete" method="POST">
+	        			<input type="hidden" name="id" value="<%= wallet.id %>">
+	        			<button type="submit" class="btn btn-primary wallet-delete">Delete Wallet</button>
+	        		</form>
+	        	</div>
+	        	
+        	</div>
+        </div>
+    <% }); %>
+
+    <div class="add-wallet edit-mode">
+
+    	<form class="add-wallet__form border" method="post" action="/wallet/create">
+	    	<h2>Add a wallet</h2>
+    	    <div class="form-group">
+    	      <label for="publicKey">Publid Wallet Address </label>
+    	      <p>Add another address</p>
+            <div>
+                <input type="radio" id="etherium" name="cointype" value="etherium" checked>
+                <label for="male">etherium</label>
+
+                <input type="radio" id="Bitcoin" name="cointype" value="Bitcoin">
+                <label for="female">Bitcoin</label>
+
+                <input type="radio" id="Litecoin" name="cointype" value="Litecoin">
+                <label for="other">Litecoin</label>
+              </div>
+    	      <input type="walet" name="publicKey" placeholder="eg .0x79dbfc3719a4209302d4fe0edc8cf0d74193caea">
+    	    </div>
+    	    <input type="hidden" name="owner" value=<%= user.id%>>
+    	    <button type="submit" class="btn btn-primary">Add wallet</button>
+    	</form>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+
+<section class="bg-primary pb120">
+    <div class="container pt80">
+        <div class="row mb24 mb-xs-0">
+            <div class="edit-button__container">
+                <a href="/<%= user.username%>" class="btn btn-white btn-lg">Finished editing this page</a>
+            </div>
+            <div class="col-sm-10 col-sm-offset-1 text-center">
+                <h1 class="large"><%= user.username%></h1>
+                <p class="lead">
+                    CoinSend.com/<%= user.username%>
+                </p>
+
+                <p>EDIT MODE</p>
+            </div>
+        </div>
+        <!--end of row-->
+    </div>
+    <!--end of container-->
+</section>
+
+<div class="wallets">
+<% user.wallets.forEach(function(wallet)  { %>
+<section class="cover pb120 pt120">
+    <ul class="slides">
+        <li class="overlay image-bg bg-light flex-active-slide" style="">
+            
+            <div class="container ">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <img src="/images/ethereum.png" class="coin-logo" />
+                        <h6 class="uppercase mb16"><%= wallet.cointype %></h6>
+                        <h3 class="mb40 mb-xs-16 large"><%= wallet.publicKey %>.</h3>
+                    </div>
+
+                    <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-center">
+                        <h3 class="mb40 mb-xs-32">Edit wallet</h3>
+                        <p class="lead mb0">
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+
+                        </p>
+
+                        <form class="text-left" method="post" action="/wallet/create">
+
+                            <input type="text" name="publicKey" value="<%= wallet.publicKey %>">
+                            <h5 class="uppercase">Which coin is the wallet for?</h5>
+                            <div>
+                                <div class="radio-option checked">
+                                    <div class="inner"></div>
+                                    <input type="radio" name="cointype" value="ethereum" checked>
+                                </div>
+                                <span>Ethereum</span>
+                            </div>
+                            <div>
+                                <div class="radio-option">
+                                    <div class="inner"></div>
+                                    <input type="radio" name="cointype" value="bitcoin">
+                                </div>
+                                <span>Bitcoin</span>
+                            </div>
+                            <div>
+                                <div class="radio-option">
+                                    <div class="inner"></div>
+                                    <input type="radio" name="cointype" value="ripple">
+                                </div>
+                                <span>Ripple</span>
+                            </div>
+                            <input type="hidden" name="owner" value=<%= user.id%>>
+                            <input type="submit" value="Update wallet">
+                        </form>
+                    </div>
+                </div>
+                <!--end of row-->
+            </div>
+            <!--end of container-->
+        </li>
+    </ul>
+</section>
+<% }); %>
+
+
+<section class="pt180 pb180 pt-xs-80 pb-xs-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-center">
+                <h3 class="mb40 mb-xs-32">Add a new wallet address</h3>
+                <p class="lead mb0">
+                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+
+                </p>
+
+                <form class="text-left" method="post" action="/wallet/create">
+
+                    <label>Enter your public address here</label>
+                    <input type="text" name="publicKey" placeholder="Public wallet address">
+                    <h5 class="uppercase">Which coin is the wallet for?</h5>
+                    <div>
+                        <div class="radio-option checked">
+                            <div class="inner"></div>
+                            <input type="radio" name="cointype" value="ethereum" checked>
+                        </div>
+                        <span>Ethereum</span>
+                    </div>
+                    <div>
+                        <div class="radio-option">
+                            <div class="inner"></div>
+                            <input type="radio" name="cointype" value="bitcoin">
+                        </div>
+                        <span>Bitcoin</span>
+                    </div>
+                    <div>
+                        <div class="radio-option">
+                            <div class="inner"></div>
+                            <input type="radio" name="cointype" value="ripple">
+                        </div>
+                        <span>Ripple</span>
+                    </div>
+                    <input type="hidden" name="owner" value=<%= user.id%>>
+                    <input type="submit" value="Add your wallet">
+                </form>
+            </div>
+        </div>
+        <!--end of row-->
+    </div>
+    <!--end of container-->
+</section>
+    
+    
+    
+</div>
