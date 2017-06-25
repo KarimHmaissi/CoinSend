@@ -2,7 +2,7 @@ label {
 	color: white;
 }
 
-.wallets section:nth-child(2) {
+.wallets section:nth-child(2n) {
 	background: #f8f8f8;
 }
 
@@ -18,4 +18,16 @@ label {
 	position: absolute;
 	right: 0;
 	z-index: 999;
+}
+
+.bg-light .btn:visited, .bg-light .btn:visited:hover {
+	border: 0;
+}
+
+.qr-code-container {
+	margin-top: 40px;
+}
+
+.qr-code-container img {
+	min-width: 400px;
 }

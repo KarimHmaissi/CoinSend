@@ -31,12 +31,38 @@
 		});
 
 	};
+
+
+	var qrCodeGen = function () {
+		
+		// $('.generate-qr-code').on('click', function (e) {
+		// 	e.preventDefault();
+		// 	console.log('Clicked - qrCode');
+
+		// 	var key = $(this).attr('data-publicKey');	
+
+		// 	if(!key) { return; }
+
+		// 	// $.ajax({url: 'http://chart.apis.google.com/chart?cht=qr&chld=Q%7C2&chs=200&chl=' + key})
+		// 	// .done(function (response) {
+		// 	// 	console.log(response);
+		// 	// })
+		// 	// .error(function (error) {
+		// 	// 	console.log(error);
+		// 	// });
+
+		// 	$(this).parents('.container').
+		// 	find('.qr-code-container')
+		// 	.append('<img src="' + 'http://chart.apis.google.com/chart?cht=qr&chld=Q%7C2&chs=200&chl=' + key +'" />');
+		// });
+	};
 	
 	var init = function () {
 
 		console.log('Running');
 
 		formValidate();
+		qrCodeGen();
 
 		// $('.activate-edit-mode').on('click', function () {
 		// 	$('body').toggleClass('edit-mode-active');

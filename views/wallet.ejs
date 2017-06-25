@@ -10,6 +10,15 @@
                     CoinSend.com/<%= user.username%>
                 </p>
             </div>
+
+<!--             <div class="col-xs-12 col-md-6 col-md-2">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div> -->
         </div>
         <!--end of row-->
     </div>
@@ -76,12 +85,15 @@
                     <div class="col-md-12">
                         <img src="/images/ethereum.png" class="coin-logo" />
                         <h6 class="uppercase mb16"><%= wallet.cointype %></h6>
-                        <h3 class="mb40 mb-xs-16 large"><%= wallet.publicKey %>.</h3>
+                        <h3 class="mb40 mb-xs-16 large"><%= wallet.publicKey %></h3>
                     </div>
                     <div class="col-md-12 col-sm-12">
                         <a class="btn btn-lg" href="#">Copy address to clipboard</a>
                         <a class="btn btn-lg" href="https://etherscan.io/address/<%= wallet.publicKey %>">View on etherscan.io</a>
-                        <a class="btn btn-lg" href="#">View QR Code</a>
+                        <!-- <a class="btn btn-lg generate-qr-code" href="#" data-publicKey="<%= wallet.publicKey %>">View QR Code</a> -->
+                    </div>
+                    <div class="col-xs-12 qr-code-container">
+                        <img src="http://chart.apis.google.com/chart?cht=qr&chld=Q%7C2&chs=200&chl=<%= wallet.publicKey %>" />
                     </div>
                 </div>
                 <!--end of row-->
