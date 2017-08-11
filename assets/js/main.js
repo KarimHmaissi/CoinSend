@@ -6,27 +6,24 @@
 				username: "required",
 				password: {
 					required: true,
-					minlength: 6
-				},
-				// confirm_password: {
-				// 	required: true,
-				// 	minlength: 5,
-				// 	equalTo: "#password"
-				// },
-				publicKey: {
-					required: true,
-					minlength: 12,
-				},
-				// topic: {
-				// 	required: "#newsletter:checked",
-				// 	minlength: 2
-				// },
-				// agree: "required"
+					minlength: 7
+				}
 			},
 			messages: {
 				username: "Please enter your custom URL",
-				password: "A password must be a minimum of 7 characters",
-				publicKey: "You must add a valid wallet address"
+				password: "A password must be a minimum of 7 characters"
+			}
+		});
+
+		$(".addWalletForm").validate({
+			rules: {
+				publicKey: {
+					required: true,
+					minlength: 12
+				}
+			},
+			messages: {
+				publicKey: "Please enter a valid public wallet address"
 			}
 		});
 
@@ -35,27 +32,39 @@
 
 	var qrCodeGen = function () {
 		
-		// $('.generate-qr-code').on('click', function (e) {
-		// 	e.preventDefault();
-		// 	console.log('Clicked - qrCode');
 
-		// 	var key = $(this).attr('data-publicKey');	
-
-		// 	if(!key) { return; }
-
-		// 	// $.ajax({url: 'http://chart.apis.google.com/chart?cht=qr&chld=Q%7C2&chs=200&chl=' + key})
-		// 	// .done(function (response) {
-		// 	// 	console.log(response);
-		// 	// })
-		// 	// .error(function (error) {
-		// 	// 	console.log(error);
-		// 	// });
-
-		// 	$(this).parents('.container').
-		// 	find('.qr-code-container')
-		// 	.append('<img src="' + 'http://chart.apis.google.com/chart?cht=qr&chld=Q%7C2&chs=200&chl=' + key +'" />');
-		// });
 	};
+
+	var crawlWallet = function () {
+		var wallets = $('.wallet');
+
+		
+
+		var crawlEtherWallet = function (publicKey, walletEl) {
+			var walletUrl =  'https://api.etherscan.io/api?module=account&action=balance&tag=latest&address=' + publicKey;
+			$.ajax({url: walletUrl})	
+			.done(function (data) {
+				console.log(data);
+				var formatted = parseInt(data.result) / 1000000000000000000;
+				var newFormatted = formatted.toFixed(4);
+				walletEl.find('.balance').html(formatted);
+			});
+		};
+
+		wallets.each(function (i) {
+			var wallet = $(this);
+			var publicKey = wallet.attr('data-publicKey');
+			var coinType = wallet.attr('data-coinType');
+			if(coinType === 'ethereum') {
+				setTimeout(function () {
+					crawlEtherWallet(publicKey, wallet);
+				}, 200);
+			}
+		})
+		
+
+		
+	}
 	
 	var init = function () {
 
@@ -63,58 +72,7 @@
 
 		formValidate();
 		qrCodeGen();
-
-		// $('.activate-edit-mode').on('click', function () {
-		// 	$('body').toggleClass('edit-mode-active');
-		// });
-
-		// $('.wallet__modify').on('click', function () {
-		// 	var publicKey = $(this).parent().attr('data-publicKey');
-		// 	console.log('Modifying wallet: ', publicKey);
-		// });
-
-		// $('.wallet__delete').on('click', function (e) {
-		// 	e.preventDefault();
-
-		// 	var id = $(this).parent().attr('data-publicKey');
-		// 	var wallet = $(this).parents('.wallet').remove();
-		// 	console.log('Deleting wallet: ', id);
-		// 	// console.log('Deleting wallet: ', owner);
-
-		// 	var data = {id: id};
-
-		// 	$.ajax({url: '/wallet/delete', data, method: 'POST'})
-		// 	.done(function (res) {
-		// 		console.log(res);
-		// 	}) 
-		// 	.fail(function (error) {
-		// 		console.log(error);
-		// 	});
-
-		// });
-
-		// $('.add-wallet__form').on('submit', function (e) {
-		// 	console.log('add wallet form');
-		// 	e.preventDefault();
-
-		// 	var formdata = $(this).serializeArray();
-		// 	var data = {};
-		// 	$(formdata ).each(function(index, obj){
-		// 	    data[obj.name] = obj.value;
-		// 	});
-		// 	console.log(data);
-
-		// 	$.ajax({url: '/wallet/create', data, method: 'POST'})
-		// 	.done(function (res) {
-		// 		console.log(res);
-		// 		// window.location.href=window.location.href;
-
-		// 	}) 
-		// 	.fail(function (error) {
-		// 		console.log(error);
-		// 	});
-		// });		
-
+		crawlWallet();	
 	};
 
 	$(function () {
